@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-class User{
+public class User{
 
     private @Id @GeneratedValue Long id;
     private String firstName;
@@ -17,9 +17,9 @@ class User{
     private String email;
 
 
-    User(String name, String role, String profileDescription, String email) {
-        this.firstName = name;
-        this.lastName = role;
+    User(String firstName, String lastName, String profileDescription, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.profileDescription = profileDescription;
         this.email = email;
     }
