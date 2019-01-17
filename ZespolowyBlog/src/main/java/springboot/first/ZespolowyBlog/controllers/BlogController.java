@@ -18,17 +18,34 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.Resources;
+import org.springframework.hateoas.ResourceAssembler;
+import org.springframework.stereotype.Component;
+
+@Component
+class BlogResourceAssembler implements ResourceAssembler<Blog, Resource<Blog>> {
+
+    @Override
+    public Resource<Blog> toResource(Blog blog) {
+
+        return new Resource<>(blog,
+                linkTo(methodOn(BlogController.class).one(blog.getId())).withSelfRel(),
+                linkTo(methodOn(BlogController.class).all()).withRel("blogs"));
+    }
+}
 
 @RestController
 public class BlogController {
-    private final BlogRepository repository;
 
-    BlogController(BlogRepository repository) {
+    private final BlogRepository repository;
+    private final BlogResourceAssembler assembler;
+
+    BlogController(BlogRepository repository, BlogResourceAssembler assembler) {
+
         this.repository = repository;
+        this.assembler = assembler;
     }
 
-    // aggregate root //
-
+    
     @GetMapping("/blogs")
     Resources<Resource<Blog>> all() {
 
