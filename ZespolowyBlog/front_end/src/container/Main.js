@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg';
+import FormBlog from './FormBlog';
 import '../css/App.css';
 import axios from 'axios'
 
 class Main extends Component {
     render() {
         return (
-            <div className="Main">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/containers/Main.js</code> and save to reload.
-                </p>
+            <div className="Form">
+                <FormBlog />
             </div>
         );
     }
