@@ -1,4 +1,4 @@
-package springboot.first.ZespolowyBlog.models;
+package springboot.first.ZespolowyBlog.models.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class BlogNotFoundAdvice {
+public class BlogPostNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(BlogNotFoundException.class)
+    @ExceptionHandler(BlogPostNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String BlogNotFoundHandler(BlogNotFoundException ex) {
+    String BlogPostNotFoundHandler(BlogPostNotFoundException ex) {
         return ex.getMessage();
     }
 }

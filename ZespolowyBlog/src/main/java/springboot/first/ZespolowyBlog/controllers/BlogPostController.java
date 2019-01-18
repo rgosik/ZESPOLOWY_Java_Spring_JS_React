@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import springboot.first.ZespolowyBlog.models.BlogPost;
-import springboot.first.ZespolowyBlog.models.BlogPostNotFoundException;
+import springboot.first.ZespolowyBlog.models.exceptions.BlogPostNotFoundException;
 
 import java.net.URI;
 import java.net.URISyntaxException;

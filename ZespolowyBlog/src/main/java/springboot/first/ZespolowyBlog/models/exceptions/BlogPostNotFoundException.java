@@ -1,4 +1,4 @@
-package springboot.first.ZespolowyBlog.models;
+package springboot.first.ZespolowyBlog.models.exceptions;
 
 public class BlogPostNotFoundException extends RuntimeException {
 
