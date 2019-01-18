@@ -3,21 +3,23 @@ package springboot.first.ZespolowyBlog.models;
 import lombok.Data;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Data
 @Entity
 public class BlogPost {
 
-    private @Id @GeneratedValue Long id;
+    @Id @GeneratedValue
+    private Long id;
     private String title;
     private String content;
     private Date creationDate;
-    private @ManyToOne User user;
-    private @ManyToOne Blog blog;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private  User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Blog blog;
 
 
     BlogPost(String title, String content, Date creationDate, User user, Blog blog) {
