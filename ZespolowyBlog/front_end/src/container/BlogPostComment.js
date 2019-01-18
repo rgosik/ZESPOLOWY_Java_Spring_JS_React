@@ -19,7 +19,7 @@ class BlogPostComment extends Component {
     }
 
     handleSubmit(event) {
-        alert('Your data was submitted: ' + this.state.value);
+        alert('Your data was submitted: ' + '\n'+ 'Content: '+this.state.value);
         event.preventDefault();
     }
 
