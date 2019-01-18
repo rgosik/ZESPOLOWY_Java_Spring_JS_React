@@ -25,7 +25,7 @@ class FormBlog extends Component {
 
     render() {
 
-        const currentDate =  new Date()
+        const currentDate =  new Date();
         const datetime = currentDate.getDate() + "-" + (currentDate.getMonth()+1)+ "-" + currentDate.getFullYear();
 
         return (
