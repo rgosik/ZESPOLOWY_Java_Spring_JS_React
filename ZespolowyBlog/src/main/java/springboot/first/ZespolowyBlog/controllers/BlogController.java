@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import springboot.first.ZespolowyBlog.models.Blog;
-import springboot.first.ZespolowyBlog.models.BlogNotFoundException;
+import springboot.first.ZespolowyBlog.models.exceptions.BlogNotFoundException;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

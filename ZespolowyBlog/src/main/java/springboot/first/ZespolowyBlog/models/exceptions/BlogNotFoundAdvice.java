@@ -1,4 +1,4 @@
-package springboot.first.ZespolowyBlog.models;
+package springboot.first.ZespolowyBlog.models.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
