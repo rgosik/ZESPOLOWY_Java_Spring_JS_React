@@ -24,6 +24,6 @@ public class User{
         this.lastName = lastName;
         this.profileDescription = profileDescription;
         this.email = email;
-        this.blog =blog;
+        this.blog = blog;
     }
 }
