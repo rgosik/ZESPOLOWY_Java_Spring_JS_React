@@ -7,7 +7,8 @@ class BlogPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'Please insert content.'
+            title:'',
+            content: 'Please insert content.'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -15,11 +16,11 @@ class BlogPost extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({ [event.target.name]: event.target.value});
     }
 
     handleSubmit(event) {
-        alert('Your data was submitted: ' + this.state.value);
+        alert('Your data was submitted: '+'\n'+ 'Title: '+ this.state.title + '\n'+ 'Content: '+ this.state.content);
         event.preventDefault();
     }
 
@@ -33,11 +34,11 @@ class BlogPost extends Component {
                 <h2 className="title">Insert data to create a post</h2>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="title">Enter a title </label>
-                    <input id="title" name="title" type="text" />
+                    <input id="title" name="title" type="text" onChange={this.handleChange}/>
 
                     <label>
                         <span> Content </span>
-                        <textarea value={this.state.value} onChange={this.handleChange} />
+                        <textarea name="content" value={this.state.content} onChange={this.handleChange} />
                     </label>
 
                     <input type="submit" value="Submit" />

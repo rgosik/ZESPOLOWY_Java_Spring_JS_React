@@ -19,9 +19,9 @@ class Main extends Component {
                 <h1>Blog application</h1>
                 <ul className="header">
                     <li><NavLink exact to="/">Home</NavLink></li>
-                    <li><NavLink to="/FormBlog">Create Blog</NavLink></li>
-                    <li><NavLink to="/FormPost">Create Post</NavLink></li>
-                    <li><NavLink to="/FormPostComment">Create Comment</NavLink></li>
+                    <li><NavLink to="/FormBlog">Create a blog</NavLink></li>
+                    <li><NavLink to="/FormPost">Create a post</NavLink></li>
+                    <li><NavLink to="/FormPostComment">Make a comment</NavLink></li>
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home}/>
