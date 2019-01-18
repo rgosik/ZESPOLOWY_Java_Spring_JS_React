@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   width: 1050px;
   background-color: #FFCC00;
@@ -33,4 +36,30 @@ ul.header li a {
 }
 .content li {
   margin-bottom: 10px;
+}
+.active {
+  background-color: #0099FF;
+}
+form {
+  vertical-align: middle;
+  padding-right: 12px;
+  overflow: visible;
+}
+input, textarea {
+  margin-bottom: 10px;
+  display: block;
+  width: 30%;
+  margin-left: 35%;
+}
+.title {
+  line-height: 100%;
+  vertical-align:middle;
+  text-align: center;
+}
+.date {
+  text-align: center;
+}
+label {
+  margin-top: 15px;
+  margin-left: 35%;
 }

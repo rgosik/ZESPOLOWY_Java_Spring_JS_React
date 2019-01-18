@@ -7,9 +7,9 @@ import {
     HashRouter
 } from "react-router-dom";
 import Home from "./Home";
-import FormBlog from "./FormBlog";
-import FormPost from "./FormPost";
-
+import Blog from "./Blog";
+import BlogPost from "./BlogPost";
+import BlogPostComment from "./BlogPostComment";
 
 class Main extends Component {
     render() {
@@ -18,14 +18,16 @@ class Main extends Component {
             <div>
                 <h1>Blog application</h1>
                 <ul className="header">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/FormBlog">FormBlog</NavLink></li>
-                    <li><NavLink to="/FormPost">FormPost</NavLink></li>
+                    <li><NavLink exact to="/">Home</NavLink></li>
+                    <li><NavLink to="/FormBlog">Create Blog</NavLink></li>
+                    <li><NavLink to="/FormPost">Create Post</NavLink></li>
+                    <li><NavLink to="/FormPostComment">Create Comment</NavLink></li>
                 </ul>
                 <div className="content">
                     <Route exact path="/" component={Home}/>
-                    <Route path="/FormBlog" component={FormBlog}/>
-                    <Route path="/FormPost" component={FormPost}/>
+                    <Route path="/FormBlog" component={Blog}/>
+                    <Route path="/FormPost" component={BlogPost}/>
+                    <Route path="/FormPostComment" component={BlogPostComment}/>
                 </div>
             </div>
             </HashRouter>
