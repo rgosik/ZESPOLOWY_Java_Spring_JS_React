@@ -6,6 +6,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import springboot.first.ZespolowyBlog.BlogPostCommentRepository;
 import springboot.first.ZespolowyBlog.models.BlogPostComment;
 import springboot.first.ZespolowyBlog.models.exceptions.BlogPostCommentNotFoundException;
 
