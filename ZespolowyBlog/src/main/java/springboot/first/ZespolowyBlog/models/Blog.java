@@ -25,4 +25,5 @@ public class Blog {
         this.description = description;
         this.creationDate = creationDate;
     }
+    Blog(){};
 }
