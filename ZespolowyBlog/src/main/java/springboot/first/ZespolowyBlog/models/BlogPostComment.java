@@ -27,4 +27,5 @@ public class BlogPostComment {
         this.content = content;
         this.creationDate = creationDate;
     }
+    BlogPostComment(){};
 }
