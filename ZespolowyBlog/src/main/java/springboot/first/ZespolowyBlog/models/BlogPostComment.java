@@ -15,9 +15,11 @@ public class BlogPostComment {
     private Date creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name="BLOGPOST_ID")
     private BlogPost blogPost;
 
 

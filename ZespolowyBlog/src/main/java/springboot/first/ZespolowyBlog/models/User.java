@@ -9,21 +9,18 @@ import javax.persistence.*;
 public class User{
 
     @Id @GeneratedValue
-    private  Long id;
+    private Long id;
 
     private String firstName;
     private String lastName;
     private String profileDescription;
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Blog blog;
-
-    User(String firstName, String lastName, String profileDescription, String email, Blog blog) {
+    User(String firstName, String lastName, String profileDescription, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.profileDescription = profileDescription;
         this.email = email;
-        this.blog = blog;
+        //this.blog = blog;
     }
 }

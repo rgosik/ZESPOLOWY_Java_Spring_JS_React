@@ -16,9 +16,11 @@ public class BlogPost {
     private Date creationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
     private  User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name="BLOG_ID")
     private Blog blog;
 
 
@@ -29,4 +31,5 @@ public class BlogPost {
         this.user = user;
         this.blog = blog;
     }
+    BlogPost(){}
 }

@@ -78,7 +78,6 @@ public class UserController {
                     User.setLastName(newUser.getLastName());
                     User.setProfileDescription(newUser.getProfileDescription());
                     User.setEmail(newUser.getEmail());
-                    User.setBlog(newUser.getBlog());
 
                     return repository.save(User);
                 })

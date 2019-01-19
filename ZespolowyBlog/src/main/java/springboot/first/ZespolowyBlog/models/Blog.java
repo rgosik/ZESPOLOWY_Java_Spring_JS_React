@@ -2,9 +2,7 @@ package springboot.first.ZespolowyBlog.models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -18,6 +16,9 @@ public class Blog {
     private String description;
     private Date creationDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="USER_ID")
+    private User user;
 
     Blog(String name, String subject, String description, Date creationDate) {
         this.name = name;

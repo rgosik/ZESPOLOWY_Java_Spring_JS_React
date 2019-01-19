@@ -85,6 +85,7 @@ public class BlogController {
                     Blog.setDescription(newBlog.getDescription());
                     Blog.setCreationDate(newBlog.getCreationDate());
                     Blog.setSubject(newBlog.getSubject());
+                    Blog.setUser(newBlog.getUser());
                     return repository.save(Blog);
                 })
                 .orElseGet(() -> {
