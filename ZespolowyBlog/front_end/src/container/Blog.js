@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 //import Main from "./Main";
 
 class Blog extends Component {
@@ -7,9 +8,10 @@ class Blog extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            description: 'Please insert description.',
             name: '',
-            subject: ''
+            subject: '',
+            description: 'Please insert description.',
+            creationDate:''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -22,14 +24,36 @@ class Blog extends Component {
 
 
     handleSubmit(event) {
-        alert('Your data was submitted: ' +'\n'+ 'Name: '+ this.state.name + '\n'+ 'Subject: '+this.state.subject +'\n'+ 'Description: '+this.state.description);
         event.preventDefault();
+        const currentDate =  new Date();
+        const datetime = currentDate.getFullYear() + "-0" + (currentDate.getMonth()+1)+ "-" + currentDate.getDate();
+console.log(datetime);
+
+
+        axios.post(`http://localhost:8080/blogs`, {
+            'name':this.state.name,
+            'subject': this.state.subject,
+            'description': this.state.description,
+            'creationDate': datetime
+        })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            }, err => {
+                console.log(err);
+            });
+
+
+
+
+        alert('Your data was submitted: ' +'\n'+ 'Name: '+ this.state.name + '\n'+ 'Subject: '+this.state.subject +'\n'+ 'Description: '+this.state.description);
     }
 
     render() {
 
         const currentDate =  new Date();
-        const datetime = currentDate.getDate() + "-" + (currentDate.getMonth()+1)+ "-" + currentDate.getFullYear();
+        const datetime = currentDate.getFullYear()  + "-0" + (currentDate.getMonth()+1)+ "-" + currentDate.getDate();
+
 
         return (
             <div>
