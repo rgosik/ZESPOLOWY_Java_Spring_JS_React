@@ -5,7 +5,7 @@
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 
-class GroupEdit extends Component {
+class BlogEdit extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
@@ -119,4 +119,4 @@ class GroupEdit extends Component {
     }
 }
 
-export default withCookies(withRouter(GroupEdit));
+export default withCookies(withRouter(BlogEdit));
