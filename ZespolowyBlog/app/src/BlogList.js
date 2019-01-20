@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
-class GroupList extends Component {
+class BlogList extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
@@ -93,4 +93,4 @@ class GroupList extends Component {
     }
 }
 
-export default withCookies(withRouter(GroupList));
+export default withCookies(withRouter(BlogList));

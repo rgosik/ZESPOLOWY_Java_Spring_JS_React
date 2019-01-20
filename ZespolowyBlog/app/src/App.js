@@ -3,8 +3,8 @@ import './App.css';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './Home';
-import GroupList from './GroupList';
-import GroupEdit from './GroupEdit';
+import GroupList from './BlogList';
+import GroupEdit from './BlogEdit';
 import { CookiesProvider } from 'react-cookie';
 
 
