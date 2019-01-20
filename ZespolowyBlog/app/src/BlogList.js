@@ -21,7 +21,9 @@ class BlogList extends Component {
 
         fetch('http://localhost:8080/api/blogsAll', {credentials: 'include'})
             .then(response => response.json())
-            .then(data => this.setState({blogs: data._embedded.blogList, isLoading: false}))
+            .then(data =>{
+                console.log(data._embedded.blogList);
+                this.setState({blogs: data._embedded.blogList, isLoading: false})})
             .catch(() => this.props.history.push('/blogs'));
 
     }
@@ -45,10 +47,10 @@ class BlogList extends Component {
     render() {
         const {blogs, isLoading} = this.state;
 
-//comment loading do see anything
-         if (isLoading) {
-             return <p>Loading...</p>;
-         }
+//comment loading to see anything
+//          if (isLoading) {
+//              return <p>Loading...</p>;
+//          }
 
         const groupList = blogs.map(blog => {
             return <tr key={blog.id}>
