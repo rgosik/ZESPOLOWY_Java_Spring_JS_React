@@ -8,10 +8,12 @@ class showBlog extends Component {
         super(props);
         this.state = {
             blogs: [],
-            key:''
+            key:'',
+            update:0
         };
 
     }
+
 
     handleDelete = (blog) => {
 
@@ -28,11 +30,6 @@ class showBlog extends Component {
                 console.log(res);
                 console.log(res.data);
             });
-
-        console.log(blog.id);
-
-
-console.log(this.state.blogs+'   blogsogosog');
     };
 
 
@@ -54,6 +51,7 @@ console.log(this.state.blogs+'   blogsogosog');
                         <li>{blog.subject}</li>
                         <li>{blog.description}</li>
                         <li>{blog.creationDate}</li>
+                        <button onClick={this.handleEdit}>Edit this blog</button>
                         <button onClick={this.handleDelete.bind(this, blog)}>Delete this blog</button>
                     </ul>)
                 }
