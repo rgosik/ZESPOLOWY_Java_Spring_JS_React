@@ -18,6 +18,9 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private String profileDescription;
     private String email;
+
+    public User(String id){
+        this.id = id;
+    }
 }

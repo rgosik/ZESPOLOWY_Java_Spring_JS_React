@@ -114,7 +114,6 @@ public class UserController {
                 .map(User -> {
                     User.setFirstName(newUser.getFirstName());
                     User.setLastName(newUser.getLastName());
-                    User.setProfileDescription(newUser.getProfileDescription());
                     User.setEmail(newUser.getEmail());
 
                     return repository.save(User);

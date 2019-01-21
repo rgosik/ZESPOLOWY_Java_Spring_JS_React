@@ -50,10 +50,11 @@ class BlogList extends Component {
 
         const {blogs} = this.state;
         //comment loading to see anything
-//        const {blogs, isLoading} = this.state;
-//          if (isLoading) {
-//              return <p>Loading...</p>;
-//          }
+        const {blogs, isLoading} = this.state;
+          if (isLoading) {
+              return <p>Loading...</p>;
+          }
+
 
         const groupList = blogs.map(blog => {
             //if(blog.description == 'dem'){
