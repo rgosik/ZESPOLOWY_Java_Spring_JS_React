@@ -74,22 +74,22 @@ class Home extends Component {
                     {message}
                     {button}
                 </Container>
-                <div>
+                <div  className="back">
                     {/*<h2 className="title"></h2>*/}
-                    <div className="col-lg-10 col-md-10 col-xs-12 offset-lg-1 offset-md-1">
-                        <div id="discover">
-                            <h2>Discover the passions of other people !</h2>
-                        </div>
-                        <div id="share">
-                            <h2>Share your experiences !</h2>
-                        </div>
-                        <div id="meet">
-                            <h2>Meet new people !</h2>
-                        </div>
-                        <div id="comment">
-                            <h2>Express your opinions !</h2>
-                        </div>
-                    </div>
+                    {/*<div className="col-lg-10 col-md-10 col-xs-12 offset-lg-1 offset-md-1">*/}
+                        {/*<div id="discover">*/}
+                            {/*<h2>Discover the passions of other people !</h2>*/}
+                        {/*</div>*/}
+                        {/*<div id="share">*/}
+                            {/*<h2>Share your experiences !</h2>*/}
+                        {/*</div>*/}
+                        {/*<div id="meet">*/}
+                            {/*<h2>Meet new people !</h2>*/}
+                        {/*</div>*/}
+                        {/*<div id="comment">*/}
+                            {/*<h2>Express your opinions !</h2>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         );

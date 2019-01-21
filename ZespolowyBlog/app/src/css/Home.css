@@ -1,34 +1,40 @@
-#discover, #share, #comment, #meet {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    min-height: 400px;
-    background: url("../images/discover.jpg") no-repeat;
-    background-size: 100% 100%;
-    text-align: center;
+/*#discover, #share, #comment, #meet {*/
+    /*margin-top: 20px;*/
+    /*margin-bottom: 10px;*/
+    /*min-height: 400px;*/
+    /*background: url("../images/discover.jpg") no-repeat;*/
+    /*background-size: 100% 100%;*/
+    /*text-align: center;*/
+/*}*/
+
+/*h2{*/
+    /*color: #f8f9fa;*/
+/*}*/
+
+
+/*#share {*/
+    /*background: url("../images/share.jpg");*/
+    /*background-size: 100% 100%; }*/
+
+/*#comment {*/
+    /*background: url("../images/comment.jpg");*/
+    /*background-size: 100% 100%; }*/
+
+/*#meet {*/
+    /*background: url("../images/meet.jpg");*/
+    /*background-size: 100% 100%; }*/
+.back {
+    width: 1050px;
+    height: 70vh;
+    margin: auto;
+    background-image: url("../images/alphabet-arts-and-crafts-blog-459688.jpg");
+    background-size: cover;
 }
-
-h2{
-    color: #f8f9fa;
-}
-
-
-#share {
-    background: url("../images/share.jpg");
-    background-size: 100% 100%; }
-
-#comment {
-    background: url("../images/comment.jpg");
-    background-size: 100% 100%; }
-
-#meet {
-    background: url("../images/meet.jpg");
-    background-size: 100% 100%; }
-
 .welcome-info {
     text-align: center;
 }
 .button-properties {
-    margin: 5px;
+    margin: 15px;
 }
 .btn-group {
 
