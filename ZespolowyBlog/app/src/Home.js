@@ -21,6 +21,7 @@ class Home extends Component {
         this.logout = this.logout.bind(this);
     }
 
+
     async componentDidMount() {
         const response = await fetch('http://localhost:8080/api/user', {credentials: 'include'});
         const body = await response.text();
@@ -49,15 +50,20 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.state.user);
         const message = this.state.user ?
-            <h2>Welcome, {this.state.user.name}!</h2> :
+            <h2 className="welcome-info">Welcome, {this.state.user.name}</h2> :
             <p>Please log in to manage your blogs.</p>;
 
         const button = this.state.isAuthenticated ?
-            <div>
-                <Button color="warning"><Link to="/blogs">Manage your Blogs</Link></Button>
-                <br/>
-                <Button color="primary" onClick={this.logout}>Logout</Button>
+            <div className="button-container">
+                <div className="btn-group" role="group" aria-label="Basic example">
+                    <Button className="button-properties" color="warning"><Link to="/blogs">Manage your Blogs</Link></Button>
+                    <br/>
+                    <Button className="button-properties" color="warning"><Link to="/blogPosts">Manage your BlogPosts</Link></Button>
+                    <br/>
+                    <Button className="button-properties" color="primary" onClick={this.logout}>Logout</Button>
+                </div>
             </div> :
             <Button color="primary" onClick={this.login}>Login</Button>;
 
@@ -69,7 +75,7 @@ class Home extends Component {
                     {button}
                 </Container>
                 <div>
-                    <h2 className="title"></h2>
+                    {/*<h2 className="title"></h2>*/}
                     <div className="col-lg-10 col-md-10 col-xs-12 offset-lg-1 offset-md-1">
                         <div id="discover">
                             <h2>Discover the passions of other people !</h2>

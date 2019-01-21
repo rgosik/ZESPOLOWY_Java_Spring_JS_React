@@ -17,11 +17,14 @@ class BlogList extends Component {
     }
 
     componentDidMount() {
+
         this.setState({isLoading: true});
 
         fetch('http://localhost:8080/api/blogsAll', {credentials: 'include'})
             .then(response => response.json())
-            .then(data => this.setState({blogs: data._embedded.blogList, isLoading: false}))
+            .then(data =>{
+                console.log(data._embedded.blogList);
+                this.setState({blogs: data._embedded.blogList, isLoading: false})})
             .catch(() => this.props.history.push('/blogs'));
 
     }
@@ -43,14 +46,18 @@ class BlogList extends Component {
     }
 
     render() {
-        const {blogs, isLoading} = this.state;
+        //console.log(this.props.user);
 
-//comment loading do see anything
-         /*if (isLoading) {
-             return <p>Loading...</p>;
-         }*/
+        const {blogs} = this.state;
+        //comment loading to see anything
+        const {blogs, isLoading} = this.state;
+          if (isLoading) {
+              return <p>Loading...</p>;
+          }
+
 
         const groupList = blogs.map(blog => {
+            //if(blog.description == 'dem'){
             return <tr key={blog.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{blog.name}</td>
                 <td>{blog.subject}</td>
@@ -68,7 +75,7 @@ class BlogList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/blogs/new">Add Blog</Button>
                     </div>

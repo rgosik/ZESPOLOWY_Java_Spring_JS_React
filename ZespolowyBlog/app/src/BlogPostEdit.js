@@ -1,19 +1,18 @@
- import React, { Component } from 'react';
- import { Link, withRouter } from 'react-router-dom';
- import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
- import AppNavbar from './AppNavbar';
- import { instanceOf } from 'prop-types';
- import { Cookies, withCookies } from 'react-cookie';
+import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import AppNavbar from './AppNavbar';
+import { instanceOf } from 'prop-types';
+import { Cookies, withCookies } from 'react-cookie';
 
-class BlogEdit extends Component {
+class BlogPostEdit extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
 
     emptyItem = {
-        name: '',
-        subject: '',
-        description: '',
+        title: '',
+        content: '',
         creationDate:''
     };
 
@@ -31,10 +30,10 @@ class BlogEdit extends Component {
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
             try {
-                const blog = await (await fetch(`http://localhost:8080/api/blogs/${this.props.match.params.id}`, {credentials: 'include'})).json();
+                const blog = await (await fetch(`http://localhost:8080/blogPosts/${this.props.match.params.id}`, {credentials: 'include'})).json();
                 this.setState({item: blog});
             } catch (error) {
-                this.props.history.push('/');
+                this.props.history.push('/blogPosts');
             }
         }
     }
@@ -57,7 +56,7 @@ class BlogEdit extends Component {
         event.preventDefault();
         const {item, csrfToken} = this.state;
         if (this.props.match.params.id !== 'new') {
-            await fetch(`http://localhost:8080/api/blogs/${this.props.match.params.id}`, {
+            await fetch(`http://localhost:8080/blogPosts/${this.props.match.params.id}`, {
                 method: 'PUT',
                 headers: {
                     'X-XSRF-TOKEN': csrfToken,
@@ -67,9 +66,9 @@ class BlogEdit extends Component {
                 body: JSON.stringify(item),
                 credentials: 'include'
             });
-            this.props.history.push('/blogs');
+            this.props.history.push('/blogPosts');
         } else {
-            await fetch(`http://localhost:8080/api/blogs/`, {
+            await fetch(`http://localhost:8080/blogPosts`, {
                 method: 'POST',
                 headers: {
                     'X-XSRF-TOKEN': csrfToken,
@@ -80,38 +79,33 @@ class BlogEdit extends Component {
                 credentials: 'include',
 
             });
-            this.props.history.push('/blogs');
+            this.props.history.push('/blogPosts');
         }
     }
 
     render() {
         const {item} = this.state;
-        const titles = <h2>{item.id ? 'Edit Blog' : 'Add Blog'}</h2>;
-
+        const titles = <h2>{item.id ? 'Edit BlogPost' : 'Add BlogPost'}</h2>;
         return <div>
             <AppNavbar/>
             <Container>
                 {titles}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="name">Name</Label>
-                        <Input type="text" name="name" id="name" value={item.name || ''}
-                               onChange={this.handleChange} autoComplete="name"/>
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="subject">Subject</Label>
-                        <Input type="text" name="subject" id="subject" value={item.subject || ''}
+                        <Label for="title">Title</Label>
+                        <Input type="text" name="title" id="title" value={item.title || ''}
                                onChange={this.handleChange} autoComplete="title"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="description">Description</Label>
-                        <Input type="text" name="description" id="description" value={item.description || ''}
-                               onChange={this.handleChange} autoComplete="description"/>
+                        <Label for="content">content</Label>
+                        <Input type="text" name="content" id="content" value={item.content || ''}
+                               onChange={this.handleChange} autoComplete="content"/>
                     </FormGroup>
+
 
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/blogs">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/blogPosts">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>
@@ -119,4 +113,4 @@ class BlogEdit extends Component {
     }
 }
 
-export default withCookies(withRouter(BlogEdit));
+export default withCookies(withRouter(BlogPostEdit));
