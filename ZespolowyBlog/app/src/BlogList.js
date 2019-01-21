@@ -46,9 +46,9 @@ class BlogList extends Component {
         const {blogs, isLoading} = this.state;
 
 //comment loading do see anything
-         if (isLoading) {
+         /*if (isLoading) {
              return <p>Loading...</p>;
-         }
+         }*/
 
         const groupList = blogs.map(blog => {
             return <tr key={blog.id}>

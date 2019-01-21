@@ -50,13 +50,15 @@ public class BlogController {
     private BlogRepository repository;
     private UserRepository userRepository;
     private final BlogResourceAssembler assembler;
+    private final UserResourceAssembler userAssembler;
     private final Logger log = LoggerFactory.getLogger(BlogController.class);
 
-    BlogController(BlogRepository repository, BlogResourceAssembler assembler, UserRepository userRepository) {
+    BlogController(BlogRepository repository, BlogResourceAssembler assembler, UserRepository userRepository, UserResourceAssembler userAssembler) {
 
         this.repository = repository;
         this.assembler = assembler;
         this.userRepository = userRepository;
+        this.userAssembler = userAssembler;
     }
 
 
@@ -76,15 +78,12 @@ public class BlogController {
 
     @PostMapping("/blogs")
     ResponseEntity<?> newBlog(@Valid @RequestBody Blog newBlog, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
-        Resource<Blog> resource = assembler.toResource(repository.save(newBlog));
 
-        log.info("Request to create group: {}", newBlog);
         Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
-        Optional<User> user = userRepository.findById(userId);
-        newBlog.setUser(user.orElse(new User(userId,
-                details.get("firstName").toString(), details.get("lastName").toString(), details.get("profileDescription").toString(), details.get("email").toString())));
+        Resource<Blog> resource = assembler.toResource(repository.save(newBlog));
+        newBlog.setUser(new User(userId));
 
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
