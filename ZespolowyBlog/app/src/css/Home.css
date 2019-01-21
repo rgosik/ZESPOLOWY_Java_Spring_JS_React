@@ -23,3 +23,17 @@ h2{
 #meet {
     background: url("../images/meet.jpg");
     background-size: 100% 100%; }
+
+.welcome-info {
+    text-align: center;
+}
+.button-properties {
+    margin: 5px;
+}
+.btn-group {
+
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+}

@@ -74,7 +74,7 @@ class BlogList extends Component {
         return (
             <div>
                 <AppNavbar/>
-                <Container fluid>
+                <Container>
                     <div className="float-right">
                         <Button color="success" tag={Link} to="/blogs/new">Add Blog</Button>
                     </div>

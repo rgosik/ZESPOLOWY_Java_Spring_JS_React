@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';import AppNavbar from './AppNavbar';
+import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import AppNavbar from './AppNavbar';
 import { Link, withRouter } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 import './css/BlogPostList.css';
+
 class BlogPostList extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
@@ -60,7 +62,21 @@ class BlogPostList extends Component {
 //          }
 
         const groupList = blogPosts.map(blogPost => {
-            if(blogPost.title === this.state.inputVal){
+            if(this.state.inputVal === '') {
+                return (
+                    <div className="blog-post-wrapper" key={blogPost.id}>
+                        <div className="title">{blogPost.title}</div>
+                        <div className="content">{blogPost.content}</div>
+                        <div className="creationDate">{blogPost.creationDate}</div>
+                        <div>
+                            <ButtonGroup className="buttons-group">
+                                <Button size="sm" color="primary" tag={Link} to={"/blogPosts/" + blogPost.id}>Edit</Button>
+                                <Button className="delete-button" size="sm" color="danger" onClick={() => this.remove(blogPost.id)}>Delete</Button>
+                            </ButtonGroup>
+                        </div>
+                    </div>
+                )
+            } else if(blogPost.title === this.state.inputVal){
             return (
             <div className="blog-post-wrapper" key={blogPost.id}>
                 <div className="title">{blogPost.title}</div>
@@ -96,7 +112,6 @@ class BlogPostList extends Component {
                         <Button color="success" tag={Link} to="/blogPosts/new">Add Post</Button>
                     </div>
                     <h3>Blog posts</h3>
-
 
                         <div className="holder">
                         {groupList}

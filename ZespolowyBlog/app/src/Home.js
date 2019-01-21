@@ -52,16 +52,18 @@ class Home extends Component {
     render() {
         console.log(this.state.user);
         const message = this.state.user ?
-            <h2>Welcome, {this.state.user.name}!</h2> :
+            <h2 className="welcome-info">Welcome, {this.state.user.name}</h2> :
             <p>Please log in to manage your blogs.</p>;
 
         const button = this.state.isAuthenticated ?
-            <div>
-                <Button color="warning"><Link to="/blogs">Manage your Blogs</Link></Button>
-                <br/>
-                <Button color="warning"><Link to="/blogPosts">Manage your BlogPosts</Link></Button>
-                <br/>
-                <Button color="primary" onClick={this.logout}>Logout</Button>
+            <div className="button-container">
+                <div className="btn-group" role="group" aria-label="Basic example">
+                    <Button className="button-properties" color="warning"><Link to="/blogs">Manage your Blogs</Link></Button>
+                    <br/>
+                    <Button className="button-properties" color="warning"><Link to="/blogPosts">Manage your BlogPosts</Link></Button>
+                    <br/>
+                    <Button className="button-properties" color="primary" onClick={this.logout}>Logout</Button>
+                </div>
             </div> :
             <Button color="primary" onClick={this.login}>Login</Button>;
 
