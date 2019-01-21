@@ -1,5 +1,7 @@
 package springboot.first.ZespolowyBlogs.controllers;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.hateoas.Resources;
@@ -7,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import springboot.first.ZespolowyBlogs.exceptions.BlogPostCommentNotFoundException;
+import springboot.first.ZespolowyBlogs.model.BlogPost;
 import springboot.first.ZespolowyBlogs.model.BlogPostComment;
 import springboot.first.ZespolowyBlogs.model.BlogPostCommentRepository;
 
@@ -68,6 +71,12 @@ public class BlogPostCommentController {
                 .orElseThrow(() -> new BlogPostCommentNotFoundException(id));
 
         return assembler.toResource(blogPostComment);
+    }
+
+    @GetMapping("/blogPostComments/{id}/blogPosts")
+    public Page<BlogPostComment> getAllCommentsByPostId(@PathVariable (value = "id") Long blogPostId,
+                                                 Pageable pageable) {
+        return repository.findByBlogPostId(blogPostId, pageable);
     }
 
     @PutMapping("/blogPostComments/{id}")

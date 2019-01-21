@@ -112,8 +112,7 @@ public class UserController {
 
         User updateduser= repository.findById(id)
                 .map(User -> {
-                    User.setFirstName(newUser.getFirstName());
-                    User.setLastName(newUser.getLastName());
+                    User.setName(newUser.getName());
                     User.setEmail(newUser.getEmail());
 
                     return repository.save(User);

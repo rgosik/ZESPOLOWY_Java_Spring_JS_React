@@ -14,9 +14,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 class BlogPostResourceAssembler implements ResourceAssembler<BlogPost, Resource<BlogPost>> {
@@ -68,6 +71,12 @@ public class BlogPostController {
                 .orElseThrow(() -> new BlogPostNotFoundException(id));
 
         return assembler.toResource(blogPost);
+    }
+
+    @GetMapping("/blogPosts/{id}/posts")
+    public Page<BlogPost> getAllCommentsByPostId(@PathVariable (value = "id") Long blogId,
+                                                Pageable pageable) {
+        return repository.findByBlogId(blogId, pageable);
     }
 
     @PutMapping("/blogPosts/{id}")

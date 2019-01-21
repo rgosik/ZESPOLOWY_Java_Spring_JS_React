@@ -17,6 +17,11 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 import springboot.first.ZespolowyBlogs.model.Blog;
 import springboot.first.ZespolowyBlogs.exceptions.BlogNotFoundException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
@@ -25,6 +30,7 @@ import org.springframework.hateoas.Resources;
 import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 import springboot.first.ZespolowyBlogs.model.User;
+import springboot.first.ZespolowyBlogs.model.BlogPost;
 import springboot.first.ZespolowyBlogs.model.UserRepository;
 import springboot.first.ZespolowyBlogs.model.BlogRepository;
 
@@ -72,20 +78,22 @@ public class BlogController {
     }
 
     @GetMapping("/blogs")
-    Collection<Blog> groups(Principal principal) {
+    Collection<Blog> blogs(Principal principal) {
         return repository.findAllByUserId(principal.getName());
     }
 
     @PostMapping("/blogs")
-    ResponseEntity<?> newBlog(@Valid @RequestBody Blog newBlog, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
+    ResponseEntity<?> newBlog(@Valid @RequestBody Blog blog, @AuthenticationPrincipal OAuth2User principal) throws URISyntaxException {
 
         Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
-        Resource<Blog> resource = assembler.toResource(repository.save(newBlog));
-        newBlog.setUser(new User(userId));
+        blog.setUser(new User(userId,
+                details.get("name").toString(), details.get("email").toString()));
 
-        return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
+        Blog result = repository.save(blog);
+        return ResponseEntity.created(new URI("/api/blog/" + result.getId()))
+                .body(result);
     }
 
     // Single item //
