@@ -86,7 +86,7 @@ class BlogEdit extends Component {
 
     render() {
         const {item} = this.state;
-        const titles = <h2>{item.id ? 'Edit Group' : 'Add Group'}</h2>;
+        const titles = <h2>{item.id ? 'Edit Blog' : 'Add Blog'}</h2>;
 
         return <div>
             <AppNavbar/>
