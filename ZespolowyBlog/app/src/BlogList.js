@@ -56,6 +56,7 @@ class BlogList extends Component {
 //          }
 
         const groupList = blogs.map(blog => {
+            //if(blog.description == 'dem'){
             return <tr key={blog.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{blog.name}</td>
                 <td>{blog.subject}</td>

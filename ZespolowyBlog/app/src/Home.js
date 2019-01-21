@@ -50,6 +50,7 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.state.user);
         const message = this.state.user ?
             <h2>Welcome, {this.state.user.name}!</h2> :
             <p>Please log in to manage your blogs.</p>;
@@ -57,6 +58,8 @@ class Home extends Component {
         const button = this.state.isAuthenticated ?
             <div>
                 <Button color="warning"><Link to="/blogs">Manage your Blogs</Link></Button>
+                <br/>
+                <Button color="warning"><Link to="/blogPosts">Manage your BlogPosts</Link></Button>
                 <br/>
                 <Button color="primary" onClick={this.logout}>Logout</Button>
             </div> :
