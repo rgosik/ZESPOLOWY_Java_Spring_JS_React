@@ -21,6 +21,7 @@ class Home extends Component {
         this.logout = this.logout.bind(this);
     }
 
+
     async componentDidMount() {
         const response = await fetch('http://localhost:8080/api/user', {credentials: 'include'});
         const body = await response.text();
@@ -69,7 +70,7 @@ class Home extends Component {
                     {button}
                 </Container>
                 <div>
-                    <h2 className="title"></h2>
+                    {/*<h2 className="title"></h2>*/}
                     <div className="col-lg-10 col-md-10 col-xs-12 offset-lg-1 offset-md-1">
                         <div id="discover">
                             <h2>Discover the passions of other people !</h2>

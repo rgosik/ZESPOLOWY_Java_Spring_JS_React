@@ -2,8 +2,8 @@
  import { Link, withRouter } from 'react-router-dom';
  import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
  import AppNavbar from './AppNavbar';
-import { instanceOf } from 'prop-types';
-import { Cookies, withCookies } from 'react-cookie';
+ import { instanceOf } from 'prop-types';
+ import { Cookies, withCookies } from 'react-cookie';
 
 class BlogEdit extends Component {
     static propTypes = {
@@ -45,7 +45,7 @@ class BlogEdit extends Component {
         const name = target.name;
         let item = {...this.state.item};
         item[name] = value;
-        if(item.creationDate == '') {
+        if(item.creationDate === '') {
             const currentDate =  new Date();
             const datetime = currentDate.getFullYear() + "-0" + (currentDate.getMonth()+1)+ "-" + currentDate.getDate();
             item.creationDate = datetime;
@@ -87,7 +87,6 @@ class BlogEdit extends Component {
     render() {
         const {item} = this.state;
         const titles = <h2>{item.id ? 'Edit Group' : 'Add Group'}</h2>;
-
         return <div>
             <AppNavbar/>
             <Container>

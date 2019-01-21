@@ -17,6 +17,7 @@ class BlogList extends Component {
     }
 
     componentDidMount() {
+
         this.setState({isLoading: true});
 
         fetch('http://localhost:8080/api/blogsAll', {credentials: 'include'})
@@ -45,9 +46,11 @@ class BlogList extends Component {
     }
 
     render() {
-        const {blogs, isLoading} = this.state;
+        //console.log(this.props.user);
 
-//comment loading to see anything
+        const {blogs} = this.state;
+        //comment loading to see anything
+//        const {blogs, isLoading} = this.state;
 //          if (isLoading) {
 //              return <p>Loading...</p>;
 //          }
