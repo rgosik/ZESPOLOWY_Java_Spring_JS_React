@@ -10,7 +10,7 @@ import { Cookies, withCookies } from 'react-cookie';
 
 
 
-class BlogPostEdit extends Component {
+class BlogPostCommentEdit extends Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
@@ -18,10 +18,8 @@ class BlogPostEdit extends Component {
 
 
     emptyItem = {
-        title: '',
         content: '',
-        creationDate:'',
-        blog: ''
+        creationDate:''
     };
 
     constructor(props) {
@@ -39,13 +37,13 @@ class BlogPostEdit extends Component {
     async componentDidMount() {
 
         let initialFetchedblogs = [];
-        fetch('http://localhost:8080/api/blogsAll')
+        fetch('http://localhost:8080/blogPosts')
             .then(response => {
                 return response.json();
                 console.log(response)
             }).then(data => {
-            console.log(data._embedded.blogList);
-            initialFetchedblogs = data._embedded.blogList.map((fetchedblog) => {
+            console.log(data._embedded.blogPostList);
+            initialFetchedblogs = data._embedded.blogPostList.map((fetchedblog) => {
                 return fetchedblog
                 console.log(fetchedblog);
             });
@@ -57,10 +55,10 @@ class BlogPostEdit extends Component {
 
         if (this.props.match.params.id !== 'new') {
             try {
-                const blog = await (await fetch(`http://localhost:8080/blogPosts/${this.props.match.params.id}`, {credentials: 'include'})).json();
+                const blog = await (await fetch(`http://localhost:8080/blogPostComments/${this.props.match.params.id}`, {credentials: 'include'})).json();
                 this.setState({item: blog});
             } catch (error) {
-                this.props.history.push('/blogPosts');
+                this.props.history.push('/blogPostComments');
             }
         }
     }
@@ -90,7 +88,7 @@ class BlogPostEdit extends Component {
         const {item, csrfToken} = this.state;
         item.blog = this.state.value;
         if (this.props.match.params.id !== 'new') {
-            await fetch(`http://localhost:8080/blogPosts/${this.props.match.params.id}`, {
+            await fetch(`http://localhost:8080/blogPostComments/${this.props.match.params.id}`, {
                 method: 'PUT',
                 headers: {
                     'X-XSRF-TOKEN': csrfToken,
@@ -101,9 +99,9 @@ class BlogPostEdit extends Component {
                 credentials: 'include',
 
             });
-            this.props.history.push('/blogPosts');
+            this.props.history.push('/blogPostComments');
         } else {
-            await fetch(`http://localhost:8080/blogPosts`, {
+            await fetch(`http://localhost:8080/blogPostComments`, {
                 method: 'POST',
                 headers: {
                     'X-XSRF-TOKEN': csrfToken,
@@ -114,7 +112,7 @@ class BlogPostEdit extends Component {
                 credentials: 'include',
 
             });
-            this.props.history.push('/blogPosts');
+            this.props.history.push('/blogPostComments');
         }
     }
 
@@ -126,11 +124,11 @@ class BlogPostEdit extends Component {
 
         let fetchedblogs = this.state.fetchedblogs;
         let optionItems = fetchedblogs.map((fetchedblog) =>
-            <option key={fetchedblog.id}>{fetchedblog.name}</option>
+            <option key={fetchedblog.id}>{fetchedblog.title}</option>
         );
 
         const {item} = this.state;
-        const titles = <h2>{item.id ? 'Edit BlogPost' : 'Add BlogPost'}</h2>;
+        const titles = <h2>{item.id ? 'Edit BlogPostComment' : 'Add BlogPostComment'}</h2>;
         return <div>
             <AppNavbar/>
             <Container>
@@ -139,11 +137,7 @@ class BlogPostEdit extends Component {
                     <select onChange={(e) => this.setState({ value: e.target.value })}>
                         {optionItems}
                     </select>
-                    <FormGroup>
-                        <Label for="title">Title</Label>
-                        <Input type="text" name="title" id="title" value={item.title || ''}
-                               onChange={this.handleChange} autoComplete="title"/>
-                    </FormGroup>
+
                     <FormGroup>
                         <Label for="content">content</Label>
                         <Input type="text" name="content" id="content" value={item.content || ''}
@@ -153,7 +147,7 @@ class BlogPostEdit extends Component {
 
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/blogPosts">Cancel</Button>
+                        <Button color="secondary" tag={Link} to="/blogPostComments">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>
@@ -161,4 +155,4 @@ class BlogPostEdit extends Component {
     }
 }
 
-export default withCookies(withRouter(BlogPostEdit));
+export default withCookies(withRouter(BlogPostCommentEdit));

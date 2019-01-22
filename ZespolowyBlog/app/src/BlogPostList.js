@@ -96,7 +96,7 @@ class BlogPostList extends Component {
 
             <div>
                 <AppNavbar/>
-                <div className="input-with-text"><span>Znajdź posty na blogu </span>
+                <div className="input-with-text"><span>Find posts on blog </span>
                     <input id="value"
                            type="text"
                            onChange={(evt) => {
