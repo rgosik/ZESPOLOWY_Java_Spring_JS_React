@@ -113,7 +113,7 @@ class BlogPostCommentList extends Component {
                     </div>
                     <h3>Comments</h3>
 
-                    <div className="holder">
+                    <div className="holders">
                         {groupList}
                     </div>
 
