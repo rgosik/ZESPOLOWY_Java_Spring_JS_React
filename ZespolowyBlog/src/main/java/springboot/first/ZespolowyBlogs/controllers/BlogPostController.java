@@ -62,8 +62,6 @@ public class BlogPostController {
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
 
-    // Single item //
-
     @GetMapping("/blogPosts/{id}")
     Resource<BlogPost> one(@PathVariable Long id) {
 
