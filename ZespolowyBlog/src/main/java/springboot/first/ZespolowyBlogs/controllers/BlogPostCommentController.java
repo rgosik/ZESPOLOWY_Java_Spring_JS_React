@@ -62,8 +62,6 @@ public class BlogPostCommentController {
         return ResponseEntity.created(new URI(resource.getId().expand().getHref())).body(resource);
     }
 
-    // Single item //
-
     @GetMapping("/blogPostComments/{id}")
     Resource<BlogPostComment> one(@PathVariable Long id) {
 
